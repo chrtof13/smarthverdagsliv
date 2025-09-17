@@ -1,0 +1,74 @@
+/* src/index.css */
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Litt typografi for artikler */
+.article-content h2 { @apply text-2xl font-semibold mt-8 mb-3; }
+.article-content p { @apply mb-4; }
+.article-content ul { @apply list-disc pl-6 mb-4; }
+.article-content ol { @apply list-decimal pl-6 mb-4; }
+.article-content a { @apply text-blue-600 underline; }
+
+/* Lesbarhet i artikkelinnholdet (HTML som kommer fra strings) */
+.article-content p {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.article-content h2 { font-size: clamp(1.25rem, 1.1rem + 1vw, 1.75rem); }
+.article-content h3 { font-size: clamp(1.125rem, 1rem + 0.7vw, 1.5rem); }
+.article-content h4 { font-size: clamp(1rem, 0.95rem + 0.5vw, 1.25rem); }
+
+.article-content img,
+.article-content video,
+.article-content iframe {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.article-content ul,
+.article-content ol {
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.article-content blockquote {
+    border-left: 4px solid rgb(229 231 235);
+    padding-left: 1rem;
+    color: rgb(75 85 99);
+    margin: 1rem 0;
+}
+
+.article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto; /* horisontal scroll hvis mange kolonner */
+}
+
+.article-content th,
+.article-content td {
+    border: 1px solid rgb(229 231 235);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.article-content a {
+    color: rgb(37 99 235);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
