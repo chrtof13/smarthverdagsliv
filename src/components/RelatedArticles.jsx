@@ -18,7 +18,7 @@ export default function RelatedArticles({ currentId, count = 3 }) {
                         key={a.id}
                         className="group bg-white rounded-xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition overflow-hidden"
                     >
-                        <Link to={`/article/${a.id}`} className="block p-4 sm:p-5">
+                        <Link to={`/artikler/${a.slug}`} className="block p-4 sm:p-5">
                             <h3 className="text-base sm:text-lg font-semibold group-hover:underline">
                                 {a.title}
                             </h3>
