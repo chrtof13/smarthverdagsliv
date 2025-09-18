@@ -1,12 +1,19 @@
+// src/components/Seo.jsx
 import { useEffect } from "react";
 
 /**
- * <Seo title="Tittel | SmartHverdagsliv" description="Kort beskrivelse" />
+ * Enkel SEO-komponent for dynamisk title og description
+ * Brukes slik:
+ *   <Seo title="Artikkel 1 | Min blogg" description="Kort beskrivelse..." />
  */
 export default function Seo({ title, description }) {
     useEffect(() => {
-        if (title) document.title = title;
+        // Oppdater document.title
+        if (title) {
+            document.title = title;
+        }
 
+        // Oppdater (eller lag) meta description
         if (description !== undefined) {
             let meta = document.querySelector('meta[name="description"]');
             if (!meta) {
@@ -18,5 +25,5 @@ export default function Seo({ title, description }) {
         }
     }, [title, description]);
 
-    return null;
+    return null; // Denne rendrer ingenting i DOM, bare oppdaterer <head>
 }

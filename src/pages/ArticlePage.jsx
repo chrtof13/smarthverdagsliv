@@ -1,35 +1,59 @@
+// src/pages/ArticlePage.jsx
 import { useParams, Link } from "react-router-dom";
 import { articles } from "../data/articles";
 import Seo from "../components/Seo";
 import RelatedArticles from "../components/RelatedArticles";
 
 export default function ArticlePage() {
-    const { slug } = useParams();
-    const article = articles.find((a) => a.slug === slug);
+    const { id } = useParams();
+    const article = articles.find((a) => a.id.toString() === id);
 
     if (!article) {
         return (
-            <div className="max-w-4xl mx-auto p-6">
-                <h1 className="text-2xl font-bold">Artikkel ikke funnet</h1>
-                <Link to="/" className="text-blue-600">Til forsiden</Link>
-            </div>
+            <main className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+                <h1 className="text-xl font-bold">Artikkel ikke funnet</h1>
+                <Link to="/" className="text-blue-600 underline">Tilbake til forsiden</Link>
+            </main>
         );
     }
 
     return (
-        <article className="max-w-4xl mx-auto p-6">
-            <Seo
-                title={article.title}
-                description={article.excerpt}
-            />
-            <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
-            <p className="text-gray-500 text-sm mb-6">{article.date}</p>
-            <div className="prose max-w-none">
-                {article.content.split("\n").map((p, i) => (
-                    <p key={i}>{p}</p>
-                ))}
+        <main className="mx-auto w-full max-w-3xl lg:max-w-4xl">
+            <Seo title={`${article.title} | SmartHverdagsliv`} description={article.excerpt} />
+
+            <nav className="mb-4 sm:mb-6">
+                <Link
+                    to="/"
+                    aria-label="Gå tilbake til forsiden"
+                    className="text-sm text-blue-600 hover:underline"
+                >
+                    ← Tilbake
+                </Link>
+            </nav>
+
+            <header className="mb-4 sm:mb-6">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+                    {article.title}
+                </h1>
+                <p className="text-xs sm:text-sm text-gray-500 mt-2">{article.date}</p>
+            </header>
+
+            <ArticleBody content={article.content} />
+
+            <RelatedArticles currentId={article.id} count={3} />
+
+            <div className="mt-10">
+                <Link to="/" className="text-blue-600 hover:underline">← Til forsiden</Link>
             </div>
-            <RelatedArticles currentId={article.id} />
-        </article>
+        </main>
+    );
+}
+
+function ArticleBody({ content }) {
+    return (
+        <div
+            className="article-content text-[15px] sm:text-base lg:text-lg leading-7 sm:leading-8 text-gray-800"
+            dangerouslySetInnerHTML={{ __html: content }}
+        />
     );
 }

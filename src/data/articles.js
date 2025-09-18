@@ -1,4 +1,4 @@
-const rawArticles = [
+export const articles = [
     {
         id: 1,
         title: "De mest nyttige AI-verktøyene i 2025 du faktisk kan bruke",
@@ -592,18 +592,3 @@ Små steg kan gi store resultater – og 2025 kan bli året hvor du endelig får
     `,
     },
 ];
-
-const slugify = (str) =>
-    str
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // fjern diakritikk
-        .toLowerCase()
-        .replace(/[^a-z0-9æøå\s-]/g, "") // behold norske bokstaver
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "");
-
-// 3) Exportér ferdige articles med slug
-export const articles = rawArticles.map((a) => ({
-    ...a,
-    slug: a.slug || slugify(a.title),
-}));
